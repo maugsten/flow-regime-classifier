@@ -13,6 +13,7 @@ from flowregime.model import (
 
 from flowregime.evaluation import (
     evaluate_model,
+    plot_confusion_matrix,
 )
 
 
@@ -83,6 +84,11 @@ def main():
     print()
     print("Classification Report")
     print(report)
+
+    plot_confusion_matrix(
+        matrix,
+        "outputs/confusion_matrix.png",
+    )
 
 
 if __name__ == "__main__":

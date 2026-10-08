@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
 import torch
 
 from sklearn.metrics import (
@@ -87,3 +89,34 @@ def evaluate_model(
         matrix,
         report,
     )
+
+def plot_confusion_matrix(
+    matrix,
+    save_path,
+):
+
+    labels = [
+        IDX_TO_CLASS[i]
+        for i in range(len(IDX_TO_CLASS))
+    ]
+
+    plt.figure(figsize=(8, 6))
+
+    sns.heatmap(
+        matrix,
+        annot=True,
+        fmt="d",
+        cmap="Blues",
+        xticklabels=labels,
+        yticklabels=labels,
+    )
+
+    plt.xlabel("Predicted")
+    plt.ylabel("True")
+    plt.title("Confusion Matrix")
+
+    plt.tight_layout()
+
+    plt.savefig(save_path)
+
+    plt.close()
