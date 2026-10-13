@@ -1,17 +1,160 @@
-sequence_length: 30
-hidden_size: 128
-learning_rate: 0.001
-batch_size: 16
+# ============================================================
+# Flow Regime Classifier
+# Baseline Configuration
+# ============================================================
+
 seed: 42
 
-data_dir: data
+# ------------------------------------------------------------
+# Data
+# ------------------------------------------------------------
 
-output_dir: outputs/features
+data:
+  root_dir: data
 
-image_size: 224
+  classes:
+    - annular
+    - churn
+    - dispersed
+    - slug
+    - stratified
+    - wavy
 
-batch_size: 64
+  num_classes: 6
 
-feature_extractor:
+
+# outputs 
+outputs:
+  model_dir: outputs/models
+  features_dir: outputs/features
+  best_model: outputs/models/best_model.pt
+
+# ------------------------------------------------------------
+# Experiment split
+# ------------------------------------------------------------
+
+split:
+
+  train_experiments_per_class: 8
+  val_experiments_per_class: 2
+  test_experiments_per_class: 2
+
+  random_seed: 42
+
+# ------------------------------------------------------------
+# Images
+# ------------------------------------------------------------
+
+images:
+
+  image_size: 224
+
+  mean:
+    - 0.485
+    - 0.456
+    - 0.406
+
+  std:
+    - 0.229
+    - 0.224
+    - 0.225
+
+# ------------------------------------------------------------
+# Feature extraction
+# ------------------------------------------------------------
+
+features:
+
   backbone: resnet18
+
   pretrained: true
+
+  feature_dim: 512
+
+  batch_size: 32
+
+  device: auto
+
+# ------------------------------------------------------------
+# Dataset
+# ------------------------------------------------------------
+
+dataset:
+
+  use_cached_features: true
+
+  shuffle_train: true
+
+  shuffle_val: false
+
+  shuffle_test: false
+
+  num_workers: 4
+
+# ------------------------------------------------------------
+# Classifier
+# ------------------------------------------------------------
+
+model:
+
+  input_dim: 512
+
+  hidden_dim: 256
+
+  output_dim: 6
+
+  dropout: 0.5
+
+# ------------------------------------------------------------
+# Training
+# ------------------------------------------------------------
+
+training:
+
+  epochs: 20
+
+  batch_size: 8
+
+  learning_rate: 0.001
+
+  weight_decay: 0.0001
+
+  optimizer: adam
+
+# ------------------------------------------------------------
+# Evaluation
+# ------------------------------------------------------------
+
+evaluation:
+
+  metrics:
+    - accuracy
+    - balanced_accuracy
+    - confusion_matrix
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
+
+# outputs:
+
+#   model_dir: outputs/models
+
+#   results_dir: outputs/results
+
+#   figures_dir: outputs/figures
+
+#   best_model: outputs/models/best_model.pt
+
+# ------------------------------------------------------------
+# Labels
+# ------------------------------------------------------------
+
+labels:
+
+  0: annular
+  1: churn
+  2: dispersed
+  3: slug
+  4: stratified
+  5: wavy

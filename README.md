@@ -339,21 +339,3 @@ Random baseline = 16.7%
 ```
 
 and demonstrates that the extracted image features contain information relevant for flow regime classification.
-
----
-
-# Future Work
-
-Potential extensions include:
-
-- Larger dataset
-- Data augmentation
-- Hyperparameter optimization
-- Cross-validation
-- GRU-based sequence models
-- Transformer-based sequence models
-- Multi-camera fusion
-- Physics-informed features
-- Temporal attention mechanisms
-
-As the dataset grows, future work will focus on improving generalization performance and understanding which visual features are most important for flow regime classification.
