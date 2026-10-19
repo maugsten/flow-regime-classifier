@@ -10,7 +10,8 @@ seed: 42
 # ------------------------------------------------------------
 
 data:
-  root_dir: data
+  #  root_dir: data
+  root_dir: data_augmented
 
   classes:
     - annular
@@ -28,11 +29,19 @@ data:
 
 split:
 
-  train_experiments_per_class: 8
-  val_experiments_per_class: 2
-  test_experiments_per_class: 2
+  train_fraction: 0.70
+  val_fraction: 0.15
+  test_fraction: 0.15
 
   random_seed: 42
+
+# split:
+
+#   train_experiments_per_class: 8
+#   val_experiments_per_class: 2
+#   test_experiments_per_class: 2
+
+#   random_seed: 42
 
 # ------------------------------------------------------------
 # Images
@@ -135,7 +144,8 @@ outputs:
 
   model_dir: outputs/models
 
-  features_dir: outputs/features
+  # features_dir: outputs/features
+  features_dir: features_augmented
 
   best_model: outputs/models/best_model.pt
 

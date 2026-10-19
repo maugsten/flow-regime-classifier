@@ -223,3 +223,5 @@ data/
 outputs/
 configs/local.yaml
 local/
+data_augmented/
+features_augmented/
